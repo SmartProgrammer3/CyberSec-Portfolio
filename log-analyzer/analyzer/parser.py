@@ -1,6 +1,7 @@
 import re
-from dataclasses import dataclass
+
 from datetime import datetime
+from analyzer.models import LogEntry
 
 # Map the Combined Log Format.
 COMBINED_LOG_PATTERN = re.compile(
@@ -8,16 +9,6 @@ COMBINED_LOG_PATTERN = re.compile(
     r'"(?P<method>\S+) (?P<path>\S+) \S+" '
     r'(?P<status>\d{3}) (?P<bytes>\S+)'
 )
-
-# A data structure representing a log entry that has already been processed.
-@dataclass
-class LogEntry:
-    ip: str
-    time: datetime
-    method: str
-    path: str
-    status: int
-    bytes: int
     
 # Takes a line of text and returns a LogEntry or None if the line does not match the pattern.
 def parse_line(line: str) -> LogEntry | None:

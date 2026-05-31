@@ -1,0 +1,19 @@
+# Virtual environment
+venv/
+
+# Configuration with API keys (never commit!!)
+config.py
+
+# Generated reports
+output/
+
+# Large log files
+samples/access.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# VS Code
+.vscode/
