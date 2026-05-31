@@ -4,6 +4,7 @@ A Python tool that parses Apache/Nginx access logs and automatically detects com
 
 Built as part of a Cybersecurity Portfolio.
 
+
 ## Features
 
 - Parses Apache/Nginx Combined Log Format.
@@ -12,6 +13,7 @@ Built as part of a Cybersecurity Portfolio.
 - Real-time Telegram alerts (watch mode).
 - PDF report generation with executive summary and attack breakdown.
 - Two operating modes: batch analysis and real-time monitoring.
+
 
 ## Project Structure
 
@@ -40,6 +42,7 @@ log-analyzer/
 ├── main.py                          # Entry point
 └── requirements.txt
 ```
+
 
 ## How It Works
 
@@ -82,21 +85,6 @@ Apache/Nginx Log (access.log)
 ```
 
 
-## Usage
-
-**Batch mode** -> Analyse an entire log file and generate a PDF report + Telegram summary:
-
-```bash
-python3 main.py --log samples/access.log
-```
-
-**Watch mode** -> Monitor a log file in real time and send Telegram alerts:
-
-```bash
-python3 main.py --log /var/log/nginx/access.log --watch
-```
-
-
 ## Setup
 ```bash
 python3 -m venv venv
@@ -125,6 +113,19 @@ TELEGRAM_CHAT_ID = "" # @userinfobot or /getUpdates
 ```
 
 
+## Usage
+
+**Batch mode** -> Analyse an entire log file and generate a PDF report + Telegram summary:
+
+```bash
+python3 main.py --log samples/access.log
+```
+
+**Watch mode** -> Monitor a log file in real time and send Telegram alerts:
+
+```bash
+python3 main.py --log /var/log/nginx/access.log --watch
+```
 
 
 ## Detection Engine
