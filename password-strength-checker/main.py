@@ -2,6 +2,7 @@ import os
 import sys
  
 from checker.base_checks import check
+from checker.crack_time import check_crack_time
 from checker.entropy import check_entropy
 from checker.haveibeenpwned import check_hibp
 from checker.reporter import generate_report
@@ -21,7 +22,9 @@ def main() -> None:
  
     # Run all checks and aggregate results.
     results = check(password)
-    results.append(check_entropy(password))
+    entropy_result, entropy = check_entropy(password)
+    results.append(entropy_result)
+    results.extend(check_crack_time(entropy))
     results.append(check_hibp(password))
  
     # Print a quick summary to the terminal.

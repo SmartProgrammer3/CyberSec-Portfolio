@@ -34,6 +34,7 @@ RECOMMENDATIONS = {
     "Year pattern": "Avoid appending years to your password (e.g. 1990, 2024).",
     "Date pattern": "Avoid appending dates to your password (e.g. 0101, 3112).",
     "Entropy": "Increase password complexity by combining multiple character classes and increasing its length.",
+    "Crack time (offline fast hash)": "Password is vulnerable to brute-force attacks under realistic conditions. Increase length and use a wider mix of character classes to significantly raise the estimated crack time.",
     "HIBP": "This password has been exposed in a known data breach. Choose a completely different password immediately.",
 }
  

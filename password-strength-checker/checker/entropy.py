@@ -95,7 +95,7 @@ def _get_entropy_label(entropy: float) -> str:
 
 
 # Calculate the entropy of the password and return a CheckResult indicating whether it meets the minimum acceptable threshold.
-def check_entropy(password: str) -> CheckResult:
+def check_entropy(password: str) -> tuple[CheckResult, float]:
     entropy = _calculate_password_entropy(password)
     label = _get_entropy_label(entropy)
     passed = entropy >= ENTROPY_VERY_WEAK # Minimum acceptable!!
@@ -105,10 +105,10 @@ def check_entropy(password: str) -> CheckResult:
             passed=True,
             name="Entropy",
             message=f"Password entropy is {entropy:.2f} bits ({label}).",
-        )
+        ), entropy
         
     return CheckResult(
         passed=False,
         name="Entropy",
         message=f"Password entropy is {entropy:.2f} bits ({label}), which is below the minimum acceptable threshold of {ENTROPY_VERY_WEAK} bits.",
-    )    
+    ), entropy
