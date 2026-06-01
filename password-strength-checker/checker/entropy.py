@@ -95,18 +95,31 @@ def _get_entropy_label(entropy: float) -> str:
 
 
 # Calculate the entropy of the password and return a CheckResult indicating whether it meets the minimum acceptable threshold.
-def check_entropy(password: str) -> tuple[CheckResult, float]:
+# If the password failed the substitutions check, the entropy is penalised by 20 bits to reflect (Character substitutions are trivially guessable despite its apparent complexity.).
+def check_entropy(password: str, penalise: bool = False) -> tuple[CheckResult, float]:
     entropy = _calculate_password_entropy(password)
+
+    if penalise:
+        entropy = max(0.0, entropy - 20.0)
+        label = _get_entropy_label(entropy)
+        passed = entropy >= ENTROPY_VERY_WEAK
+
+        return CheckResult(
+            passed=passed,
+            name="Entropy",
+            message=f"Password entropy is {entropy:.2f} bits ({label}) after a 20-bit penalty for predictable character substitutions.",
+        ), entropy
+
     label = _get_entropy_label(entropy)
-    passed = entropy >= ENTROPY_VERY_WEAK # Minimum acceptable!!
-    
+    passed = entropy >= ENTROPY_VERY_WEAK
+
     if passed:
         return CheckResult(
             passed=True,
             name="Entropy",
             message=f"Password entropy is {entropy:.2f} bits ({label}).",
         ), entropy
-        
+
     return CheckResult(
         passed=False,
         name="Entropy",

@@ -98,16 +98,16 @@ def check_crack_time(entropy: float) -> list[CheckResult]:
         CheckResult(
             passed=passed,
             name="Crack time (online)",
-            message=f"Estimated crack time under an online attack: {_format_time(online)}.",
+            message=f"Estimated crack time under an online attack (1,000 guesses/second, rate-limited): {_format_time(online)}.",
         ),
         CheckResult(
             passed=passed,
             name="Crack time (offline slow hash)",
-            message=f"Estimated crack time against a slow hash (bcrypt, Argon2): {_format_time(offline_slow)}.",
+            message=f"Estimated crack time against a slow hash (bcrypt/Argon2 at 10,000,000 guesses/second): {_format_time(offline_slow)}.",
         ),
         CheckResult(
             passed=passed,
             name="Crack time (offline fast hash)",
-            message=f"Estimated crack time against a fast hash (MD5, SHA-1): {_format_time(offline_fast)}.",
+            message=f"Estimated crack time against a fast hash (MD5/SHA-1 on NVIDIA RTX 3090 at 22,000,000,000 guesses/second): {_format_time(offline_fast)}.",
         ),
     ]
